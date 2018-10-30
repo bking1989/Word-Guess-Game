@@ -1,120 +1,64 @@
-// Defining all of the variables we're going to use as global
 
-var opener = document.getElementById("opener");
+    
+// Global variables will be defined starting here
+
+var openingText = document.getElementById("openingText");
 var gameBoard = document.getElementById("gameBoard");
-var totalRight = document.getElementById("totalCorrect")
-var numTries = 0;
+var totalWins = document.getElementById("totalWins");
+var winCounter = 0;
+var totalLosses = document.getElementById("totalLosses");
+var loseCounter = 0;
 var rmGuesses = document.getElementById("rmGuesses");
-var rmTotal = 20;
-var totalWrong = document.getElementById("totalWrong");
-var gameOver = document.getElementById("gameOver");
-var userInput;
-var starterBoard = ["_", "_", "_", "_", " ", "_", "_", " ", "_", "_", "_", " ", "_", "_", "_"]
-var answerArray = ("Come As You Are").toLocaleLowerCase().split("");
+var guessCounter = 25;
+var usedLetters = document.getElementById("usedLetters");
 
-// We start the game with the first keystroke clearing the opening screen, and setting up the game and score boards
+// Possible options, and the process of a random one being selected 
 
-document.onkeyup = function(e) {
-    if (opener.classList.contains("hide") == false) {
-        opener.classList.add("hide");
-        gameBoard.classList.remove("hide");
-        gameBoard.innerHTML = starterBoard.join("");
-        totalRight.classList.remove("hide");
-        totalRight.innerHTML += numTries;
-        rmGuesses.classList.remove("hide");
-        rmGuesses.innerHTML += " " + rmTotal;
-        totalWrong.classList.remove("hide");
+var possibleWords = [
+    "Smells Like Teen Spirit",
+    "Creep",
+    "Black Hole Sun",
+    "Loser",
+    "What I Got"];
+var randomNumber = Math.floor(Math.random() * 5);
+var chosenWord = possibleWords[randomNumber];
 
-// After that, the game stars. If the key value is correct, it clears up one more spot on the board.
+// Convert our string into an array, and make a censored version
 
-    } else if (opener.classList.contains("hide")) {
-        var keyValue = event.chatCode || event.keyCode;
-        userInput = String.fromCharCode(keyValue).toLocaleLowerCase();
+var answerArray = chosenWord.split("");
+var censoredWord = answerArray;
 
-// Input for "Come"
-        
-        if (userInput === "c" && starterBoard[0] === "_") {
-            starterBoard[0] = "C";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "o" && starterBoard[1] === "_") {
-            starterBoard[1] = "o";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "m" && starterBoard[2] === "_") {
-            starterBoard[2] = "m";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "e" && starterBoard[3] === "_") {
-            starterBoard[3] = "e";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
+// The actual game functions will start here
 
- // Input for "As" 
+window.onload = function(e) {
+    document.onkeyup = function(e) {
+        if (openingText.classList.contains("hide") == false) {
 
-        } else if (userInput === "a" && starterBoard[5] === "_") {
-            starterBoard[5] = "A";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "s" && starterBoard[6] === "_") {
-            starterBoard[6] = "s";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
+            // Opening screen needs to be cleared, first
+            
+            openingText.classList.add("hide");
+            gameBoard.classList.remove("hide");
+            gameBoard.innerHTML = censoredWord.toString();
+            totalWins.classList.remove("hide");
+            totalWins.innerHTML = "Wins: " + winCounter;
+            totalLosses.classList.remove("hide");
+            totalLosses.innerHTML = "Losses: " + loseCounter;
+            rmGuesses.classList.remove("hide");
+            rmGuesses.innerHTML = "Guesses Remaining: " + guessCounter;
+            usedLetters.classList.remove("hide");
 
-// Input for "You"
+        } else if (openingText.classList.contains("hide")) {
+            
+            // After opening screen is cleared, game begins
+            // The first step is recording the user's input as a variable
 
-        } else if (userInput === "y" && starterBoard[8] === "_") {
-            starterBoard[8] = "Y";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "o" && starterBoard[1] === "o" && starterBoard[9] === "_") {
-            starterBoard[9] = "o";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "u" && starterBoard[10] === "_") {
-            starterBoard[10] = "u";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
+            var userChoice = event.key.toLocaleLowerCase();
 
-// Input for "Are"
+            //Then, we start applying the user's entry to the hidden word
 
-        } else if (userInput === "a" && starterBoard[5] === "A" && starterBoard[12] === "_") {
-            starterBoard[12] = "A";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "r" && starterBoard[13] === "_") {
-            starterBoard[13] = "r";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-        } else if (userInput === "e" && starterBoard[3] === "e" && starterBoard[14] === "_") {
-            starterBoard[14] = "e";
-            gameBoard.innerHTML = starterBoard.join("");
-            numTries++;
-            totalRight.innerHTML = "Wins: " + numTries;
-
-// If the user's input is NOT one of the correct ones, it counts against their guesses. If they run out, its 'game over'.
-
-        } else {
-            if (rmTotal > 1) {
-                totalWrong.innerHTML += " " + userInput;
-                rmTotal--;
-                rmGuesses.innerHTML = "Remaining Guesses: " + rmTotal;
-            } else {
-                totalWrong.innerHTML += " " + userInput;
-                rmTotal--;
-                rmGuesses.innerHTML = "Remaining Guesses: " + rmTotal;
-                gameOver.classList.remove("hide");
+            if (answerArray.indexOf(userChoice) >= 0) {
+                var correct = answerArray.indexOf(userChoice);
+                censoredWord[correct] = chosenWord[correct];
             }
         }
     }
