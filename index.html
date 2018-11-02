@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Word Guess Game</title>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
 <body>
-    <h1 id="openingText">Welcome to our special Word Guess Game!<br><br>Please press any key to get started!</h1>
-    <h1 id="gameBoard" class="hide">_ _ _ _ _ _ _</h1>
-    <h1 id="winTotal" class="hide">Wins: 0</h1>
-    <h1 id="remainingGuesses" class="hide">Remaining Guesses: 14</h1>
-    <h1 id="wrongGuesses" class="hide">Incorrect Answers:</h1>
+    <h1 id="opener">Welcome to my Word Guess Game!<br>Please press any key to continue!</h1>
+    <ul id="gameBoard" class="hide"></ul>
+    <h2 id="totalWins" class="hide"></h2>
+    <h2 id="totalLosses" class="hide"></h2>
+    <h2 id="totalGuesses" class="hide"></h2>
+    <h2 id="guessesMade" class="hide"></h2>
+    <script src="assets/javascript/game.js"></script>
 </body>
-<script src="assets/javascript/game.js"></script>
 </html>

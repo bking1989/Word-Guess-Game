@@ -1,10 +1,48 @@
-h1{
-    color: black;
-    font-size: 2em;
-    font-weight: bold;
-    line-height: 1.2;
+.hide{
+    display: none;
 }
 
-h1.hide{
-    display: none;
+h1#opener{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    color: black;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    line-height: 2em;
+    margin: 2em;
+    user-select: none;
+}
+
+ul#gameBoard{
+    list-style-position: inside;
+    list-style-type: none;
+    margin: 2em;
+}
+
+ul#gameBoard li{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    color: black;
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.5em;
+    margin: 0 0.25em;
+    text-align: center;
+    user-select: none;
+    width: 1.5em;
+}
+
+ul#gameBoard li.blackout{
+    background: black;
+}
+
+h2{
+    color: black;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.5em;
+    margin: 0 2em;
 }
