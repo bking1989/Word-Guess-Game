@@ -1,3 +1,24 @@
+body{
+    background-image: url('../images/background.png');
+    height: 100vh;
+    position: relative;
+    width: 100vw;
+}
+
+div#wrapper{
+    background-color: rgba(255,255,255,0.6);
+    bottom: 0;
+    display: block;
+    height: 600px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 800px;
+}
+
 .hide{
     display: none;
 }
@@ -5,44 +26,52 @@
 h1#opener{
     -moz-user-select: none;
     -webkit-user-select: none;
-    color: black;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #222;
+    font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.5em;
     font-weight: bold;
-    font-size: 2em;
-    line-height: 2em;
-    margin: 2em;
+    line-height: 2.5em;
+    margin: 170px 0 0 0;
+    text-shadow: rgba(0,0,0,0.1) 2px 2px 0px;
     user-select: none;
+}
+
+h1#opener i{
+    font-size: 20px;
 }
 
 ul#gameBoard{
     list-style-position: inside;
     list-style-type: none;
-    margin: 2em;
+    margin: 170px 0 2em 0;
 }
 
 ul#gameBoard li{
     -moz-user-select: none;
     -webkit-user-select: none;
-    color: black;
+    color: #222;
     display: inline-block;
     font-size: 1.5em;
     font-weight: bold;
     line-height: 1.5em;
     margin: 0 0.25em;
     text-align: center;
+    text-shadow: rgba(0,0,0,0.1) 2px 2px 0px;
     user-select: none;
     width: 1.5em;
 }
 
 ul#gameBoard li.blackout{
-    background: black;
+    background: #222;
+    box-shadow: rgba(0,0,0,0.1) 3px 3px 0px;
 }
 
 h2{
-    color: black;
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #222;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     font-size: 1.5em;
     font-weight: bold;
     line-height: 1.5em;
     margin: 0 2em;
+    text-shadow: rgba(0,0,0,0.1) 2px 2px 0px;
 }
