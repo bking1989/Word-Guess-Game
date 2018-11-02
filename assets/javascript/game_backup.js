@@ -31,11 +31,6 @@ var gamesWon = document.getElementById("gamesWon");
 var wonCounter = 0;
 gamesWon.innerHTML = "Games Won: " + wonCounter;
 
-// Games Lost section
-var gamesLost = document.getElementById("gamesLost");
-var loseCounter = 0;
-gamesLost.innerHTML = "Games Lost: " + loseCounter;
-
 // Wins section
 var totalCorrect = document.getElementById("totalCorrect");
 var correctCounter = 0;
@@ -66,13 +61,12 @@ window.onload = function() {
             opener.classList.add("hide");
             gameBoard.classList.remove("hide");
             gamesWon.classList.remove("hide");
-            gamesLost.classList.remove("hide");
             totalCorrect.classList.remove("hide");
             totalWrong.classList.remove("hide");
             totalGuesses.classList.remove("hide");
             guessesMade.classList.remove("hide");
         // If the opener has already been cleared, then the keypress is registered as a variable, and the game runs its course
-        } else if (opener.classList.contains("hide")) {
+        } else if (opener.classList.contains("hide") && rmGuesses >= 1) {
             var userInput = event.key.toLocaleUpperCase();
             // This will check to see if any part of the word is unsolved. If there are none, then the player wins, and can reset the puzzle
             if (gameBoard.getElementsByClassName("blackout").length == 0) {
@@ -93,26 +87,6 @@ window.onload = function() {
                 totalGuesses.innerHTML = "Guesses Remaining: " + rmGuesses;
                 guessCounter = [];
                 guessesMade.innerHTML = "Guesses Made: " + guessCounter;
-            // If the player didn't win, but rather lost, then this will reset the puzzle, instead
-            } else if (gameBoard.getElementsByClassName("blackout").length != 0 && rmGuesses <= 0) {
-                alert("You ran out of guesses and didn't solve the word! Want to try again?");
-                gameBoard.innerHTML = "";
-                chosenCity = cities[Math.ceil(Math.random() * 4)];
-                answerKey = chosenCity.toLocaleUpperCase().split("");
-                for (var i = 0; i < answerKey.length; i++) {
-                    var letter = answerKey[i];
-                    var listItem = document.createElement("li");
-                    listItem.innerHTML = letter;
-                    listItem.classList.add("blackout");
-                    gameBoard.append(listItem);
-                };
-                loseCounter++;
-                gamesLost.innerHTML = "Games Lost: " + loseCounter;
-                rmGuesses = 20;
-                totalGuesses.innerHTML = "Guesses Remaining: " + rmGuesses;
-                guessCounter = [];
-                guessesMade.innerHTML = "Guesses Made: " + guessCounter;
-            // Assuming the game isn't over, the game will now compare user input to the answer array of the present word
             // If the user's answer doesn't match anything in the array, then they lose a guess and the answer is recorded
             } else if (answerKey.indexOf(userInput) == -1 && gameBoard.getElementsByClassName("blackout").length >= 1) {
                 wrongCounter++;
@@ -132,6 +106,9 @@ window.onload = function() {
                 guessCounter.push(userInput + " ");
                 guessesMade.innerHTML = "Guesses Made: " + guessCounter.join("");
             };
-        };
+        // If you run out of remaining guesses, no more entries are logged, and it's game over with no restart
+        } else if (opener.classList.contains("hide") && rmGuesses <= 0) {
+            alert("You ran out of tries! Game over!")
+        };  
     };
 };
