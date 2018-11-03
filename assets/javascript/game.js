@@ -121,13 +121,13 @@ window.onload = function() {
                 totalGuesses.innerHTML = "Guesses Remaining: " + rmGuesses;
                 guessCounter.push(userInput + " ");
                 guessesMade.innerHTML = "Guesses Made: " + guessCounter.join("");
-            // If the user's answer matches an entry in the array, then they don't lose a guess and can continue
+            // If the user's answer matches an entry in the array, the matching letter is revealed, but they still lose a guess
             } else if (answerKey.indexOf(userInput) >= 0) {
                 var value = answerKey.indexOf(userInput);
                 gameBoard.children[value].classList.remove("blackout");
                 correctCounter++;
                 totalCorrect.innerHTML = "Correct: " + correctCounter;
-                rmGuesses;
+                rmGuesses--;
                 totalGuesses.innerHTML = "Guesses Remaining: " + rmGuesses;
                 guessCounter.push(userInput + " ");
                 guessesMade.innerHTML = "Guesses Made: " + guessCounter.join("");
